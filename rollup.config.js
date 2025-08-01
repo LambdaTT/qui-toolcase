@@ -3,7 +3,7 @@ import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import { terser } from 'rollup-plugin-terser'
 
-const external = ['vue', 'quasar', '@lambdatt-qui/toolcase']
+const external = ['vue', 'quasar']
 
 export default [
   // ESM build
@@ -11,7 +11,7 @@ export default [
     input: 'src/index.js',
     external,
     output: {
-      file: 'dist/qui-iam.esm.js',
+      file: 'dist/qui-toolcase.esm.js',
       format: 'esm',
       sourcemap: true
     },
@@ -27,7 +27,7 @@ export default [
     input: 'src/index.js',
     external,
     output: {
-      file: 'dist/qui-iam.cjs.js',
+      file: 'dist/qui-toolcase.cjs.js',
       format: 'cjs',
       sourcemap: true,
       exports: 'default'

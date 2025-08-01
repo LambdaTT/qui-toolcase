@@ -27,17 +27,17 @@ function walk(dir, ext, files = []) {
 // 1) Components
 const comps = walk(path.join(root, 'components'), '.vue')
 // 2) Services
-const svcs  = walk(path.join(root, 'services'),  '.js')
+const svcs = walk(path.join(root, 'services'), '.js')
 // 3) Pages
-const pages = walk(path.join(root, 'pages'),     '.vue')
+// const pages = walk(path.join(root, 'pages'),     '.vue')
 
 // Build import lines & registrations
 let out = []
 
 out.push(`// AUTO GENERATED - do not edit by hand\n`)
 
-out.push('// => importing ENDPOINTS:')
-out.push(`import ENDPOINTS from './ENDPOINTS.js'\n`)
+// out.push('// => importing ENDPOINTS:')
+// out.push(`import ENDPOINTS from './ENDPOINTS.js'\n`)
 
 out.push('// => importing services:')
 svcs.forEach(file => {
@@ -53,9 +53,9 @@ comps.forEach(file => {
   out.push(`import ${name} from '${rel}'`)
 })
 
-out.push('\nexport function registerEndpoints(app) {')
-out.push('  app.config.globalProperties.$iam.ENDPOINTS = ENDPOINTS')
-out.push('}\n')
+// out.push('\nexport function registerEndpoints(app) {')
+// out.push('  app.config.globalProperties.$iam.ENDPOINTS = ENDPOINTS')
+// out.push('}\n')
 
 out.push('export function registerComponents(app) {')
 comps.forEach(file => {
@@ -73,12 +73,12 @@ svcs.forEach(file => {
 out.push('}\n')
 
 // Pages
-out.push('export const pages = {}')
-pages.forEach(file => {
-  const rel = './' + path.relative(root, file).replace(/\\/g, '/')
-  const name = path.basename(file, '.vue')
-  out.push(`pages['${name}'] = (await import('${rel}')).default`)
-})
+// out.push('export const pages = {}')
+// pages.forEach(file => {
+//   const rel = './' + path.relative(root, file).replace(/\\/g, '/')
+//   const name = path.basename(file, '.vue')
+//   out.push(`pages['${name}'] = (await import('${rel}')).default`)
+// })
 
 // Write the file
 fs.writeFileSync(

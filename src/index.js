@@ -1,5 +1,5 @@
 // src/index.js
-import { registerComponents, registerServices, registerEndpoints, pages } from './registrations.js'
+import { registerComponents, registerServices } from './registrations.js'
 
 export default {
   install(app) {
@@ -9,16 +9,14 @@ export default {
     // 2) Register all services under $iam
     app.config.globalProperties.$iam = {
       services: {},
-      pages: {},
-      ENDPOINTS: {}
     }
     registerServices(app)
 
     // 3) Register ENDPOINTS
-    registerEndpoints(app)
+    // registerEndpoints(app)
 
     // 4) Expose pages for manual routing
-    app.config.globalProperties.$iam.pages = pages
+    // app.config.globalProperties.$iam.pages = pages
 
   }
 }
